@@ -14,6 +14,9 @@ class App extends Component {
   }
 
   predictHandle = () => {
+    this.setState({
+      result: {}
+    })
     request
       .post("https://tranquil-gasket-165218.appspot.com/predict")
       .send({ uid: this.state.url })
