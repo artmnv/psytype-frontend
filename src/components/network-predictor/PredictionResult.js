@@ -2,9 +2,13 @@ import React, { Component } from "react";
 
 class PredictionResult extends Component {
   render() {
+    if (!this.props.predicted_type) {
+      return null;
+    }
+
     return (
       <div>
-        <p>{this.props.predicted_type}</p>
+        <p>Результат: {this.props.predicted_type}</p>
       </div>
     );
   }
