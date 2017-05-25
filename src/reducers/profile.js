@@ -3,11 +3,11 @@ const profile = (state = [], action) => {
     case "RECEIVE_PROFILE":
       return {
         ...state,
-        ...action.profile
-      };
+        ...action.profile,
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default profile;
+export default profile

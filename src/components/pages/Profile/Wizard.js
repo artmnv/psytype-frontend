@@ -1,22 +1,22 @@
-import React from "react";
-import RaisedButton from "material-ui/RaisedButton";
-import FlatButton from "material-ui/FlatButton";
-import SelectField from "material-ui/SelectField";
-import MenuItem from "material-ui/MenuItem";
-import { fetchProfile } from "../../../actions";
-import { connect } from "react-redux";
+import React from "react"
+import RaisedButton from "material-ui/RaisedButton"
+import FlatButton from "material-ui/FlatButton"
+import SelectField from "material-ui/SelectField"
+import MenuItem from "material-ui/MenuItem"
+import { fetchProfile } from "../../../actions"
+import { connect } from "react-redux"
 
 class Wizard extends React.Component {
   state = {
-    value: null
-  };
+    value: null,
+  }
 
-  handleChange = (event, index, value) => this.setState({ value });
+  handleChange = (event, index, value) => this.setState({ value })
 
   handleIKnow = () => {
-    const { dispatch } = this.props;
-    dispatch(fetchProfile());
-  };
+    const { dispatch } = this.props
+    dispatch(fetchProfile())
+  }
 
   render() {
     return (
@@ -72,8 +72,8 @@ class Wizard extends React.Component {
           onTouchTap={this.authVK}
         />
       </div>
-    );
+    )
   }
 }
 
-export default connect()(Wizard);
+export default connect()(Wizard)

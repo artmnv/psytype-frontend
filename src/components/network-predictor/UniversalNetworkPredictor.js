@@ -1,51 +1,51 @@
-import React, { Component } from "react";
-import request from "superagent";
+import React, { Component } from "react"
+import request from "superagent"
 import {
   Card,
   CardActions,
   CardHeader,
   CardMedia,
   CardTitle,
-  CardText
-} from "material-ui/Card";
-import FlatButton from "material-ui/FlatButton";
-import TextField from "material-ui/TextField";
-import RaisedButton from "material-ui/RaisedButton";
-import Divider from "material-ui/Divider";
-import Paper from "material-ui/Paper";
+  CardText,
+} from "material-ui/Card"
+import FlatButton from "material-ui/FlatButton"
+import TextField from "material-ui/TextField"
+import RaisedButton from "material-ui/RaisedButton"
+import Divider from "material-ui/Divider"
+import Paper from "material-ui/Paper"
 
-import PredictionResult from "./PredictionResult";
+import PredictionResult from "./PredictionResult"
 
 class UniversalNetworkPredictor extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      url: "index.ascx"
-    };
+      url: "index.ascx",
+    }
   }
 
   predictHandle = () => {
     this.setState({
-      result: {}
-    });
+      result: {},
+    })
     request
       .post("https://tranquil-gasket-165218.appspot.com/predict")
       .send({ uid: this.state.url })
       .set("Content-Type", "application/x-www-form-urlencoded")
       .set("Accept", "application/json")
       .end((err, res) => {
-        console.log(res.body);
+        console.log(res.body)
         this.setState({
-          result: res.body
-        });
-      });
-  };
+          result: res.body,
+        })
+      })
+  }
 
   urlChangeHandle = e => {
     this.setState({
-      url: e.target.value
-    });
-  };
+      url: e.target.value,
+    })
+  }
 
   render() {
     return (
@@ -74,8 +74,8 @@ class UniversalNetworkPredictor extends Component {
           </CardText>
         </Card>
       </div>
-    );
+    )
   }
 }
 
-export default UniversalNetworkPredictor;
+export default UniversalNetworkPredictor

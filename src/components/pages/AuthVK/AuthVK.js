@@ -1,28 +1,28 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import CircularProgress from "material-ui/CircularProgress";
-import { connect } from "react-redux";
+import React, { Component } from "react"
+import { withRouter } from "react-router-dom"
+import CircularProgress from "material-ui/CircularProgress"
+import { connect } from "react-redux"
 
-import { requestAuthProfile } from "../../../actions";
+import { requestAuthProfile } from "../../../actions"
 
 const styles = {
   container: {
     width: 600,
     margin: "0 auto",
-    textAlign: "center"
-  }
-};
+    textAlign: "center",
+  },
+}
 
 class AuthVK extends Component {
   componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(requestAuthProfile());
+    const { dispatch } = this.props
+    dispatch(requestAuthProfile())
   }
 
   componentWillReceiveProps(nextProps) {
-    const { user_id } = nextProps;
+    const { user_id } = nextProps
     if (user_id) {
-      this.props.history.push("/profile");
+      this.props.history.push("/profile")
     }
   }
 
@@ -33,19 +33,19 @@ class AuthVK extends Component {
         <br /><br />
         <CircularProgress size={80} thickness={5} />
       </div>
-    );
+    )
   }
 }
 
 const mapStateToProps = state => {
-  const { profile } = state;
+  const { profile } = state
   const { id } = profile || {
-    id: null
-  };
+    id: null,
+  }
 
   return {
-    user_id: id
-  };
-};
+    user_id: id,
+  }
+}
 
-export default connect(mapStateToProps)(withRouter(AuthVK));
+export default connect(mapStateToProps)(withRouter(AuthVK))

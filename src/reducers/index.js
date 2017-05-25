@@ -1,8 +1,8 @@
-import { combineReducers } from "redux";
-import profile from "./profile";
+import { combineReducers } from "redux"
+import profile from "./profile"
 
 const psyTypeApp = combineReducers({
-  profile
-});
+  profile,
+})
 
-export default psyTypeApp;
+export default psyTypeApp
