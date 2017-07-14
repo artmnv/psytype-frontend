@@ -6,6 +6,70 @@
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <title>React App</title>
+    <style>
+    html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}body{line-height:1;}ol,ul{list-style:none;}blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}table{border-collapse:collapse;border-spacing:0;}body{-webkit-text-size-adjust:none}mark{background-color:transparent;color:inherit}input::-moz-focus-inner{border:0;padding:0}input,select,textarea{-moz-appearance:none;-webkit-appearance:none;-ms-appearance:none;appearance:none}*, *:before, *:after {box-sizing: border-box;}
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      line-height: 1.0;
+      word-wrap: break-word;
+      overflow-x: hidden;
+      color: #fff;
+      font-size: 18px;
+    }
+
+    body::before {
+      content: '';
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      -moz-pointer-events: none;
+      -webkit-pointer-events: none;
+      -ms-pointer-events: none;
+      pointer-events: none;
+      -moz-transform: scale(1);
+      -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+      transform: scale(1);
+      background-image: linear-gradient(to top, rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url(bg.jpg);
+      background-position: 0% 0%, center;
+      background-repeat: repeat, no-repeat;
+      background-size: auto, cover;
+      background-attachment: scroll;
+      background-color: #fff;
+      filter: blur(3px);
+    }
+
+    .tick, .tick line {
+      display: none;
+    }
+
+    .axis.x .tick {
+      display: block;
+    }
+
+    .legend {
+      display: none;
+    }
+
+    rect.bar {
+      fill: #fff;
+    }
+
+    .tick text {
+      font-size: 14px;
+      fill: #fff;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    </style>
   </head>
   <body>
     <div id="root"></div>

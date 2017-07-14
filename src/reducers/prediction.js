@@ -1,7 +1,6 @@
-const profile = (state = [], action) => {
+const profile = (state = {}, action) => {
   switch (action.type) {
-    case "RECEIVE_PROFILE":
-    case "PROFILE_SUCCESS":
+    case "PREDICTION_SUCCESS":
       return {
         ...state,
         ...action.response,

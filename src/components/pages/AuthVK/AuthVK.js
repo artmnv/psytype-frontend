@@ -7,16 +7,30 @@ import { requestAuthProfile } from "../../../actions"
 
 const styles = {
   container: {
-    width: 600,
+    width: '400',
     margin: "0 auto",
     textAlign: "center",
   },
 }
 
+function findGetParameter(parameterName) {
+    var result = null,
+        tmp = [];
+    location.search
+    .substr(1)
+        .split("&")
+        .forEach(function (item) {
+        tmp = item.split("=");
+        if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+    });
+    return result;
+}
+
 class AuthVK extends Component {
   componentDidMount() {
     const { dispatch } = this.props
-    dispatch(requestAuthProfile())
+    const code = findGetParameter('code')
+    dispatch(requestAuthProfile(code))
   }
 
   componentWillReceiveProps(nextProps) {

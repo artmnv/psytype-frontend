@@ -2,29 +2,28 @@ import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 
-import Wizard from "./Wizard"
 import Predictions from "./Predictions"
+import { fetchPrediction } from "../../../actions"
 
 class Profile extends Component {
+  componentDidMount = () => {
+    const { dispatch } = this.props
+    dispatch(fetchPrediction())
+  }
   render() {
-    if (this.props.profile.predictions) {
-    }
     return (
       <div>
-        <Link to="/">Home</Link>
-        <hr />
-        {this.props.profile.prediction ? <Predictions /> : null}
-        {!this.props.profile.opinion ? <Wizard /> : null}
+        {this.props.prediction ? <Predictions /> : null}
       </div>
     )
   }
 }
 
 const mapStateToProps = state => {
-  const { profile } = state
+  const { prediction } = state
 
   return {
-    profile,
+    prediction,
   }
 }
 

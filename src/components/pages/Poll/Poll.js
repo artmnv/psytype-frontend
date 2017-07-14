@@ -6,7 +6,7 @@ import MenuItem from "material-ui/MenuItem"
 import { fetchProfile } from "../../../actions"
 import { connect } from "react-redux"
 
-class Wizard extends React.Component {
+class Poll extends React.Component {
   state = {
     value: null,
   }
@@ -76,4 +76,4 @@ class Wizard extends React.Component {
   }
 }
 
-export default connect()(Wizard)
+export default connect()(Poll)

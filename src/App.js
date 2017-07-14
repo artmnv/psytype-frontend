@@ -14,8 +14,11 @@ import reducer from "./reducers"
 import Profile from "./components/pages/Profile/Profile"
 import Home from "./components/pages/Home/Home"
 import AuthVK from "./components/pages/AuthVK/AuthVK"
+import Poll from "./components/pages/Poll/Poll"
+import ProfileWidget from "./components/ProfileWidget"
+import apiMiddleware from "./middleware/api"
 
-const middleware = [thunk]
+const middleware = [thunk, apiMiddleware]
 if (process.env.NODE_ENV !== "production") {
   middleware.push(createLogger())
 }
@@ -33,6 +36,42 @@ const styles = {
   },
   drawerPaddingTop: {
     height: 64,
+  },
+  wrapper: {
+    WebkitOverflowScrolling: 'touch',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: '100vh',
+    position: 'relative',
+    zIndex: 2,
+    padding: '2.5rem 2.5rem 2.5rem 2.5rem',
+  },
+  main: {
+    display: 'flex',
+    position: 'relative',
+    maxWidth: '100%',
+    zIndex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    textAlign: 'left',
+    boxShadow: '0rem 1.125rem 4.125rem 0rem rgba(0,0,0,0.451)',
+    borderRadius: '0.625rem 0.625rem 0.625rem 0.625rem',
+    transition: 'opacity 0.75s ease 0.125s,transform 0.75s ease 0.125s',
+  },
+  inner: {
+    backgroundPosition: '0% 0%',
+    backgroundRepeat: 'repeat',
+    backgroundSize: 'cover',
+    backgroundImage: 'linear-gradient(103deg, #EB816A 0%, #E6A87C 100%)',
+    overflowX: 'hidden',
+    position: 'relative',
+    zIndex: 1,
+    padding: '5rem 4rem',
+    maxWidth: '100%',
+    width: '38rem',
   },
 }
 
@@ -57,16 +96,15 @@ class App extends Component {
       <Provider store={store}>
         <MuiThemeProvider muiTheme={muiTheme}>
           <Router basename="/" forceRefresh={!supportsHistory}>
-            <div>
-              <AppBar
-                style={styles.appBar}
-                title="Психософия"
-                onLeftIconButtonTouchTap={this.handleToggle}
-              />
-              <div style={styles.container}>
-                <Route exact path="/" component={Home} />
-                <Route path="/profile" component={Profile} />
-                <Route path="/authVK" component={AuthVK} />
+            <div style={styles.wrapper}>
+              <ProfileWidget />
+              <div style={styles.main}>
+                <div style={styles.inner}>
+                  <Route exact path="/" component={Home} />
+                  <Route path="/profile" component={Profile} />
+                  <Route path="/authVK" component={AuthVK} />
+                  <Route path="/poll" component={Poll} />
+                </div>
               </div>
             </div>
           </Router>
