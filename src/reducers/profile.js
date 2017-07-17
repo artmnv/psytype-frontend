@@ -1,10 +1,10 @@
 const profile = (state = [], action) => {
   switch (action.type) {
-    case "RECEIVE_PROFILE":
-    case "PROFILE_SUCCESS":
+    case 'RECEIVE_PROFILE':
+    case 'PROFILE_SUCCESS':
       return {
         ...state,
-        ...action.response,
+        ...action.response
       }
     default:
       return state

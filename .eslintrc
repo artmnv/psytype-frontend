@@ -1,0 +1,26 @@
+{
+  "extends": ["standard", "react-app", "plugin:react/recommended"],
+
+  "parser": "babel-eslint",
+
+  "plugins": [
+    "react"
+  ],
+
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+
+  rules: {
+    "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true, "allowTaggedTemplates": true }],
+    "prefer-arrow-callback": "error",
+    "object-shorthand": "error",
+    "prefer-template": "error",
+    "require-yield": "error",
+    "arrow-parens": ["error", "as-needed"],
+    "prefer-const": "error",
+    "no-var": "error",
+    "no-undef": "off"
+  },
+}

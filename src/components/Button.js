@@ -1,4 +1,5 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 const styles = {
   wrapper: {
@@ -12,11 +13,16 @@ const styles = {
 }
 
 class Button extends Component {
+  static propTypes = {
+    onTouchTap: PropTypes.func,
+    label: PropTypes.string
+  }
+
   handleTouchTap = () => {
     this.props.onTouchTap()
   }
 
-  render() {
+  render () {
     return (
       <div onTouchTap={this.handleTouchTap} style={styles.wrapper}>
         {this.props.label}

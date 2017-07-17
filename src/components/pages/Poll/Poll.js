@@ -1,14 +1,19 @@
-import React from "react"
-import RaisedButton from "material-ui/RaisedButton"
-import FlatButton from "material-ui/FlatButton"
-import SelectField from "material-ui/SelectField"
-import MenuItem from "material-ui/MenuItem"
-import { fetchProfile } from "../../../actions"
-import { connect } from "react-redux"
+import React from 'react'
+import PropTypes from 'prop-types'
+import RaisedButton from 'material-ui/RaisedButton'
+import FlatButton from 'material-ui/FlatButton'
+import SelectField from 'material-ui/SelectField'
+import MenuItem from 'material-ui/MenuItem'
+import { fetchProfile } from '../../../actions'
+import { connect } from 'react-redux'
 
 class Poll extends React.Component {
+  static propTypes = {
+    dispatch: PropTypes.func
+  }
+
   state = {
-    value: null,
+    value: null
   }
 
   handleChange = (event, index, value) => this.setState({ value })
@@ -18,11 +23,14 @@ class Poll extends React.Component {
     dispatch(fetchProfile())
   }
 
-  render() {
+  render () {
     return (
-      <div style={{ width: "100%", maxWidth: 700, margin: "auto" }}>
+      <div style={{ width: '100%', maxWidth: 700, margin: 'auto' }}>
         <p>
-          Вы уже знаете свой психотип? Может у вас есть какие-то идеи? Пожалуйста, поделитесь вашими мыслями. Это никак не повлияет на результаты вашего типирования. Но это поможет нам в будущем типировать точнее!
+          Вы уже знаете свой психотип? Может у вас есть какие-то идеи?
+          Пожалуйста, поделитесь вашими мыслями. Это никак не повлияет на
+          результаты вашего типирования. Но это поможет нам в будущем типировать
+          точнее!
         </p>
         <SelectField
           floatingLabelText="Мой психотип"
@@ -56,8 +64,9 @@ class Poll extends React.Component {
           <MenuItem value={23} primaryText="Августин (ЛЭФВ)" />
           <MenuItem value={24} primaryText="Лао-Цзы (ЛВФЭ)" />
         </SelectField>
-
-        <br /><br /><br />
+        <br />
+        <br />
+        <br />
         <RaisedButton
           label="Я точно знаю"
           primary={true}

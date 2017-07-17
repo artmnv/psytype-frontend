@@ -1,52 +1,42 @@
-import React, { Component } from "react"
-import { connect } from "react-redux"
-import { Bar } from "react-d3-core"
-var Chart = require("react-d3-core").Chart
-var LineChart = require("react-d3-basic").LineChart
-var BarChart = require("react-d3-basic").BarChart
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+const BarChart = require('react-d3-basic').BarChart
 
 class Predictions extends Component {
-  render() {
-    console.log(this.props.prediction)
+  static propTypes = {
+    prediction: PropTypes.shape({
+      details: PropTypes.array
+    })
+  }
+
+  render () {
     if (!this.props.prediction || !this.props.prediction.details) {
       return null
     }
 
-    var chartData = [
+    const width = 500
+    const height = 200
+    const title = 'Bar Chart'
+    const chartSeries = [
       {
-        letter: "A",
-        frequency: 0.2,
-      },
-      {
-        letter: "B",
-        frequency: 0.3,
-      },
+        field: 'p',
+        name: 'p'
+      }
     ]
-
-    var width = 500,
-      height = 200,
-      title = "Bar Chart",
-      chartSeries = [
-        {
-          field: "p",
-          name: "p",
-        },
-      ],
-      x = function(d) {
-        let type = d.type
-        type = type
-          .replace(/e/, "Э")
-          .replace(/w/, "В")
-          .replace(/l/, "Л")
-          .replace(/p/, "Ф")
-        return type
-      },
-      xScale = "ordinal",
-      xLabel = "Letter",
-      yLabel = "Frequency",
-      yTicks = [10, "%"]
-
-    console.log(this.props.prediction)
+    const x = function (d) {
+      let type = d.type
+      type = type
+        .replace(/e/, 'Э')
+        .replace(/w/, 'В')
+        .replace(/l/, 'Л')
+        .replace(/p/, 'Ф')
+      return type
+    }
+    const xScale = 'ordinal'
+    // const xLabel = 'Letter'
+    // const yLabel = 'Frequency'
+    const yTicks = [10, '%']
 
     return (
       <div>
@@ -69,7 +59,7 @@ const mapStateToProps = state => {
   const { prediction } = state
 
   return {
-    prediction,
+    prediction
   }
 }
 

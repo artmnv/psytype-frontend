@@ -1,46 +1,46 @@
-import React, { Component } from "react"
-import { withRouter } from "react-router-dom"
-import CircularProgress from "material-ui/CircularProgress"
-import { connect } from "react-redux"
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
+import CircularProgress from 'material-ui/CircularProgress'
+import { connect } from 'react-redux'
 
-import { requestAuthProfile } from "../../../actions"
+import { requestAuthProfile } from '../../../actions'
 
 const styles = {
-  container: {
-    width: '400',
-    margin: "0 auto",
-    textAlign: "center",
-  },
+  container: { width: '400', margin: '0 auto', textAlign: 'center' }
 }
 
-function findGetParameter(parameterName) {
-    var result = null,
-        tmp = [];
-    location.search
-    .substr(1)
-        .split("&")
-        .forEach(function (item) {
-        tmp = item.split("=");
-        if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
-    });
-    return result;
+function findGetParameter (parameterName) {
+  let result = null
+  let tmp = []
+  window.location.search.substr(1).split('&').forEach(item => {
+    tmp = item.split('=')
+    if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1])
+  })
+  return result
 }
 
 class AuthVK extends Component {
-  componentDidMount() {
+  propTypes = {
+    dispatch: PropTypes.func,
+    userId: PropTypes.number,
+    history: PropTypes.func
+  }
+
+  componentDidMount () {
     const { dispatch } = this.props
     const code = findGetParameter('code')
     dispatch(requestAuthProfile(code))
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { user_id } = nextProps
-    if (user_id) {
-      this.props.history.push("/profile")
+  componentWillReceiveProps (nextProps) {
+    const { userId } = nextProps
+    if (userId) {
+      this.props.history.push('/profile')
     }
   }
 
-  render() {
+  render () {
     return (
       <div style={styles.container}>
         <h2>Авторизация</h2>
@@ -53,13 +53,9 @@ class AuthVK extends Component {
 
 const mapStateToProps = state => {
   const { profile } = state
-  const { id } = profile || {
-    id: null,
-  }
+  const { id } = profile || { id: null }
 
-  return {
-    user_id: id,
-  }
+  return { userId: id }
 }
 
 export default connect(mapStateToProps)(withRouter(AuthVK))

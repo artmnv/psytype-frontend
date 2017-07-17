@@ -1,9 +1,9 @@
 const profile = (state = {}, action) => {
   switch (action.type) {
-    case "PREDICTION_SUCCESS":
+    case 'PREDICTION_SUCCESS':
       return {
         ...state,
-        ...action.response,
+        ...action.response
       }
     default:
       return state

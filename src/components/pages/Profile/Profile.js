@@ -1,16 +1,22 @@
-import React, { Component } from "react"
-import { Link } from "react-router-dom"
-import { connect } from "react-redux"
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-import Predictions from "./Predictions"
-import { fetchPrediction } from "../../../actions"
+import Predictions from './Predictions'
+import { fetchPrediction } from '../../../actions'
 
 class Profile extends Component {
-  componentDidMount = () => {
+  static propTypes = {
+    dispatch: PropTypes.func,
+    prediction: PropTypes.object
+  }
+
+  componentDidMount () {
     const { dispatch } = this.props
     dispatch(fetchPrediction())
   }
-  render() {
+
+  render () {
     return (
       <div>
         {this.props.prediction ? <Predictions /> : null}
@@ -23,7 +29,7 @@ const mapStateToProps = state => {
   const { prediction } = state
 
   return {
-    prediction,
+    prediction
   }
 }
 

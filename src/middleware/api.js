@@ -1,17 +1,17 @@
-const BASE_URL = "http://localhost:4000/"
+const BASE_URL = 'http://localhost:4000/'
 
-function callApi(endpoint, authenticated) {
-  let token = localStorage.getItem("id_token") || null
+function callApi (endpoint, authenticated) {
+  const token = localStorage.getItem('id_token') || null
   console.log(token)
   let config = {}
 
   if (authenticated) {
     if (token) {
       config = {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` }
       }
     } else {
-      console.error("No token saved!")
+      console.error('No token saved!')
     }
   }
 
@@ -20,7 +20,7 @@ function callApi(endpoint, authenticated) {
     .then(({ json, response }) => {
       if (!response.ok) {
         console.log(response)
-        localStorage.removeItem("id_token")
+        localStorage.removeItem('id_token')
         return Promise.reject(json)
       }
 
@@ -29,19 +29,23 @@ function callApi(endpoint, authenticated) {
     .catch(err => console.log(err))
 }
 
-export const CALL_API = Symbol("Call API")
+export const CALL_API = Symbol('Call API')
 
 export default store => next => action => {
   const callAPI = action[CALL_API]
 
   // So the middleware doesn't get applied to every single action
-  if (typeof callAPI === "undefined") {
+  if (typeof callAPI === 'undefined') {
     return next(action)
   }
 
-  let { endpoint, types, authenticated } = callAPI
+  const { endpoint, types, authenticated } = callAPI
 
   const [requestType, successType, errorType] = types
+
+  next({
+    type: requestType
+  })
 
   // Passing the authenticated boolean back in our data will let us distinguish between normal and secret quotes
   return callApi(endpoint, authenticated).then(
@@ -49,12 +53,12 @@ export default store => next => action => {
       next({
         response,
         authenticated,
-        type: successType,
+        type: successType
       }),
     error =>
       next({
-        error: error.message || "There was an error.",
-        type: errorType,
-      }),
+        error: error.message || 'There was an error.',
+        type: errorType
+      })
   )
 }
