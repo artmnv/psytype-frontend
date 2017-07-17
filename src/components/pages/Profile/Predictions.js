@@ -15,8 +15,8 @@ class Predictions extends Component {
       return null
     }
 
-    const width = 500
-    const height = 200
+    const width = 480
+    const height = 140
     const title = 'Bar Chart'
     const chartSeries = [
       {
@@ -40,6 +40,8 @@ class Predictions extends Component {
 
     return (
       <div>
+        <h1>Топ5 предположений нейросети</h1>
+        <br />
         <BarChart
           title={title}
           data={this.props.prediction.details}
@@ -49,6 +51,12 @@ class Predictions extends Component {
           x={x}
           xScale={xScale}
           yTicks={yTicks}
+          margins={{
+            left: 0,
+            top: 0,
+            right: 0,
+            bottom: 20
+          }}
         />
       </div>
     )
