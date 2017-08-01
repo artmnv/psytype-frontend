@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:4000/'
+export const BASE_URL = 'http://127.0.0.1:8080/'
 
 function callApi (endpoint, authenticated) {
   const token = localStorage.getItem('id_token') || null

@@ -1,4 +1,4 @@
-import { CALL_API } from '../middleware/api'
+import { CALL_API, BASE_URL } from '../middleware/api'
 
 export const authProfile = code => ({ type: 'AUTH_PROFILE', code })
 
@@ -38,7 +38,7 @@ export const fetchPrediction = () => {
 
 export const requestAuthProfile = code => dispatch => {
   dispatch(authProfile(code))
-  return fetch(`http://127.0.0.1:4000/auth/vk/callback?code=${code}`)
+  return fetch(`${BASE_URL}auth/vk/callback?code=${code}`)
     .then(response => response.json().then(json => ({ json, response })))
     .then(({ json, response }) => {
       if (!response.ok) {
