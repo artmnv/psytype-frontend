@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "homepage": "https://artmnv.github.io/psytype-frontend",
   "private": true,
+  "license": "proproetary",
+  "author": "Anton Artamonov <a.artmnv@gmail.com>",
   "dependencies": {
     "d3": "^4.10.0",
     "material-ui": "^0.18.1",
@@ -26,6 +28,7 @@
     "eslint-plugin-react": "^7.1.0",
     "eslint-plugin-standard": "^3.0.1",
     "gh-pages": "^1.0.0",
+    "prettier-standard": "^6.0.0",
     "prop-types": "^15.5.10",
     "react-scripts": "^1.0.10",
     "redux-devtools": "^3.4.0",
