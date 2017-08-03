@@ -10,6 +10,7 @@ import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import reducer from './reducers'
 
+import PrivateRoute from './components/PrivateRoute'
 import Profile from './components/pages/Profile/Profile'
 import Home from './components/pages/Home/Home'
 import AuthVK from './components/pages/AuthVK/AuthVK'
@@ -17,7 +18,7 @@ import Poll from './components/pages/Poll/Poll'
 import ProfileWidget from './components/ProfileWidget'
 import apiMiddleware from './middleware/api'
 
-const middleware = [ thunk, apiMiddleware ]
+const middleware = [thunk, apiMiddleware]
 if (process.env.NODE_ENV !== 'production') {
   middleware.push(createLogger())
 }
@@ -81,7 +82,7 @@ class App extends Component {
               <div style={styles.main}>
                 <div style={styles.inner}>
                   <Route exact path='/' component={Home} />
-                  <Route path='/profile' component={Profile} />
+                  <PrivateRoute path='/profile' component={Profile} />
                   <Route path='/authVK' component={AuthVK} />
                   <Route path='/poll' component={Poll} />
                 </div>

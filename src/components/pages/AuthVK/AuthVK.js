@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { requestAuthProfile } from '../../../actions'
 
 const styles = {
-  container: { width: '400', margin: '0 auto', textAlign: 'center' }
+  container: { width: '400px', margin: '0 auto', textAlign: 'center' }
 }
 
 function findGetParameter (parameterName) {
@@ -21,10 +21,10 @@ function findGetParameter (parameterName) {
 }
 
 class AuthVK extends Component {
-  propTypes = {
+  static propTypes = {
     dispatch: PropTypes.func,
     userId: PropTypes.number,
-    history: PropTypes.func
+    history: PropTypes.object
   }
 
   componentDidMount () {
@@ -36,7 +36,7 @@ class AuthVK extends Component {
   componentWillReceiveProps (nextProps) {
     const { userId } = nextProps
     if (userId) {
-      this.props.history.push('/profile')
+      this.props.history.replace('/profile')
     }
   }
 
@@ -44,7 +44,8 @@ class AuthVK extends Component {
     return (
       <div style={styles.container}>
         <h2>Авторизация</h2>
-        <br /><br />
+        <br />
+        <br />
         <CircularProgress size={80} thickness={5} />
       </div>
     )

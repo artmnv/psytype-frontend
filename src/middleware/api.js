@@ -2,7 +2,6 @@ export const BASE_URL = 'http://127.0.0.1:8080/'
 
 function callApi (endpoint, authenticated) {
   const token = localStorage.getItem('id_token') || null
-  console.log(token)
   let config = {}
 
   if (authenticated) {
@@ -12,21 +11,18 @@ function callApi (endpoint, authenticated) {
       }
     } else {
       console.error('No token saved!')
+      return Promise.reject(new Error('Unauthenticated'))
     }
   }
 
-  return fetch(BASE_URL + endpoint, config)
-    .then(response => response.json().then(json => ({ json, response })))
-    .then(({ json, response }) => {
-      if (!response.ok) {
-        console.log(response)
-        localStorage.removeItem('id_token')
-        return Promise.reject(json)
-      }
+  return fetch(BASE_URL + endpoint, config).then(response => {
+    if (!response.ok && response.status === 401) {
+      localStorage.removeItem('id_token')
+      return Promise.reject(new Error('Unauthenticated'))
+    }
 
-      return json
-    })
-    .catch(err => console.log(err))
+    return response.json()
+  })
 }
 
 export const CALL_API = Symbol('Call API')
